@@ -1,57 +1,12 @@
-let attribution = '<a href="https://github.com/rebane2001/coordman">Coordman</a> by Rebane';
+let attribution = '<a href="https://github.com/rebane2001/coordman">Original Coordman</a> by Rebane';
 let tileSize = 512;
-
-// Guide overlays
-let worldBorder = L.polyline([
-  [-30000000, -30000000],
-  [-30000000, 30000000],
-  [30000000, 30000000],
-  [30000000, -30000000],
-  [-30000000, -30000000]
-], {color: 'red'});
-
-let mainHighways = L.polyline([
-  [0, 0],
-  [-30000000, 0],
-  [0, 0],
-  [30000000, 0],
-  [0, 0],
-  [0, -30000000],
-  [0, 0],
-  [0, 30000000],
-  [0, 0]
-], {color: 'LimeGreen'});
-
-let diagHighways = L.polyline([
-  [0, 0],
-  [-30000000, -30000000],
-  [0, 0],
-  [30000000, -30000000],
-  [0, 0],
-  [-30000000, 30000000],
-  [0, 0],
-  [30000000, 30000000],
-  [0, 0]
-], {color: 'MediumSpringGreen'});
-
-let disabledLayer = L.tileLayer("",{minZoom: 99});
-let waypoints = {
-  "- Guides -": disabledLayer,
-  "Worldborder": worldBorder,
-  "Main Highways": mainHighways,
-  "Diag. Highways": diagHighways
-};
-
-let defaultLayers = [worldBorder, mainHighways, diagHighways];
 
 // Create the map
 var map = L.map('map', {
   crs: L.CRS.Simple,
   minZoom: -16,
-  layers: defaultLayers
+  layers: []
 }).setView([0,0], 0);
-
-L.control.layers(null, waypoints).addTo(map);
 
 // Set coord overlay on the bottom
 map.on('mousemove', function (ev) {
